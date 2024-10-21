@@ -103,6 +103,16 @@ Led-urile simple reprezintă gradul de încărcare al bateriei, pe care îl vom 
   ```
   LED-ul RGB este aprins, avand culoarea verde.
   La fiecare 3 secunde, battery++;
+  ```
+    if(currentMillis - previousMillis >= INTERVAL) {
+      previousMillis = currentMillis;
+      battery++;
+      if(battery>4){
+        battery=0;
+        charging=0;
+      }
+    }
+  ```
 
   Daca bateria nu se incarca, toate LED-urile sunt stinse, mai putin LED-ul RGB, care este aprins, avand culoarea rosie.
 ## Schema electrica
