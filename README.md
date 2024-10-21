@@ -19,6 +19,8 @@ Led-urile simple reprezintă gradul de încărcare al bateriei, pe care îl vom 
 - Linii de legătură
 
 ## Setup fizic
+<img src="https://github.com/user-attachments/assets/c252f743-cfb8-4d06-acf7-92829e6b1d15" alt="Image 1" width="400"/>
+<img src="https://github.com/user-attachments/assets/f6aa9cf6-b6a6-4712-90a1-987756e526d1" alt="Image 2" width="400"/>
 
 ## Descrierea codului
   Programul are 2 ramuri principale, pentru cazul in care bateria se incarca, si pentru cazul in care bateria nu se incarca.
@@ -123,3 +125,4 @@ Led-urile simple reprezintă gradul de încărcare al bateriei, pe care îl vom 
 
 
 ## Video cu functionalitatea montajului
+https://youtube.com/shorts/Jnpg4jyJvUQ?feature=share
