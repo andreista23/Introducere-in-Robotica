@@ -125,4 +125,4 @@ Led-urile simple reprezintă gradul de încărcare al bateriei, pe care îl vom 
 
 
 ## Video cu functionalitatea montajului
-https://youtube.com/shorts/Jnpg4jyJvUQ?feature=share
+https://youtube.com/watch/Jnpg4jyJvUQ?feature=share
