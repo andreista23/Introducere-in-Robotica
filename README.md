@@ -24,15 +24,83 @@ Led-urile simple reprezintă gradul de încărcare al bateriei, pe care îl vom 
   Programul are 2 ramuri principale, pentru cazul in care bateria se incarca, si pentru cazul in care bateria nu se incarca.
   
   Se trece in modul de incarcare atunci cand este apasat butonul de start (charging=1).
-  
+  ```
+    if(buttonStart == LOW){
+    delay(20);
+    if(charging==0){
+      previousMillis = millis();
+      charging=1;
+      }
+  }
+  ```
   Daca butonul de stop este apasat pentru mai mult de 1.5s, se opreste incarcarea (charging=0).
-  
+  ```
+    if (buttonStop == LOW) {
+    if (buttonPressStartTime == 0) {
+      //Se inregistreaza momentul cand butonul a fost apasat
+      buttonPressStartTime = millis();
+    }
+    if (millis() - buttonPressStartTime >= BTNTIME) {
+        //delay pentru debouncing
+        delay(20);
+        charging = 0;  //se opreste incarcarea
+      }
+  } 
+  ```
   Daca bateria se incarca(charging==1): exista 5 cazuri, tratate intr-un switch, in functie de nivelul bateriei (battery=0 -> bateria este sub 25%, battery=1 -> bateria este intre 25% si 50%, etc):
   - (battery == 0) Primul LED clipeste, restul sunt stinse
   - (battery == 1) Primul LED este aprins, al doilea clipeste, restul sunt stinse
   - (battery == 2) LED-urile 1 si 2 sunt aprinse, LED-ul 3 clipeste, celelalte sunt stinse
   - (battery == 3) LED-urile 1, 2 si 3 sunt aprinse, LED-ul 4 clipeste, celelalte sunt stinse
   - (battery == 4) toate LED-urile sunt aprinse
+
+  ```
+     switch (battery){
+      case 0:
+        //LED-ul 1 clipeste, celelalte sunt stinse
+        digitalWrite(LED1, LOW);
+        delay(200);
+        digitalWrite(LED1, HIGH);
+        delay(200);
+        digitalWrite(RED_LED, LOW);
+        digitalWrite(GREEN_LED, LOW);
+        digitalWrite(BLUE_LED, LOW);
+        digitalWrite(LED2, LOW);
+        digitalWrite(LED3, LOW);
+        digitalWrite(LED4, LOW);
+        break;
+      case 1:
+        //LED-ul 1 este aprins, LED-ul 2 clipeste, celelalte sunt stinse
+        digitalWrite(LED1,HIGH);
+        digitalWrite(LED2, LOW);
+        delay(200);
+        digitalWrite(LED2, HIGH);
+        delay(200);
+        break;
+      case 2:
+        //LED-ul 1 si 2 sunt aprinse, LED-ul 3 clipeste, celelalte sunt stinse
+        digitalWrite(LED2,HIGH);
+        digitalWrite(LED3, LOW);
+        delay(200);
+        digitalWrite(LED3, HIGH);
+        delay(200);
+        break;
+      case 3:
+        //LED-ul 1, 2 si 3 sunt aprinse, LED-ul 4 clipeste, celelalte sunt stinse
+        digitalWrite(LED3,HIGH);
+        digitalWrite(LED4, LOW);
+        delay(200);
+        digitalWrite(LED4, HIGH);
+        delay(200);
+        break;
+      case 4:
+        //toate LED-urile sunt aprinse
+        digitalWrite(LED4,HIGH);
+        break;
+      default:
+        break;
+    }
+  ```
   LED-ul RGB este aprins, avand culoarea verde.
   La fiecare 3 secunde, battery++;
 
