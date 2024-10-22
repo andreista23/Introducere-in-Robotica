@@ -121,7 +121,7 @@ Led-urile simple reprezintă gradul de încărcare al bateriei, pe care îl vom 
 
 ![Robotica tema 1](https://github.com/user-attachments/assets/567adeeb-7e75-4b09-b231-a1cbcdd29806)
 ![image](https://github.com/user-attachments/assets/32822976-5bc1-41e2-8c06-c66ebc56959f)
-
+https://www.tinkercad.com/things/3c0BLhKdvTG-robotica-tema-1
 
 
 ## Video cu functionalitatea montajului
