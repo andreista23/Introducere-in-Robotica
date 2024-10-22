@@ -15,7 +15,7 @@ int previousMillis = 0; //timpul l-a care s-a inceput intervalul de 3 secunde de
 int battery=0; //nivelul de incarcare al bateriei
 int charging; //daca bateria se incarca sau nu
 int buttonPressStartTime = 0; //timpul la care a fost apasat butonul de stop
-void setup(){
+void setup() {
   //pinii corespunzatori LED-urilor sunt setati ca OUTPUT, iar pinii corespunzatori butoanelor sunt setati ca INPUT_PULLUP
   pinMode(LED1, OUTPUT);
   pinMode(LED2, OUTPUT);
@@ -28,29 +28,33 @@ void setup(){
   pinMode(BTNSTOP, INPUT_PULLUP);
 }
 
-void loop(){
+void loop() {
   
+  int currentMillis = millis();
   int buttonStart = digitalRead(BTNSTART);
   //daca butonul de start este apasat, se incepe incarcarea bateriei
   if(buttonStart == LOW){
     delay(20);
     if(charging==0){
-      previousMillis = millis();
-      charging=1;}
+      previousMillis = currentMillis;
+      charging=1;
+      }
   }
   int buttonStop = digitalRead(BTNSTOP);
-  if (buttonStop == LOW){
-    if (buttonPressStartTime == 0){
+  if (buttonStop == LOW) {
+    if (buttonPressStartTime == 0) {
       //Se inregistreaza momentul cand butonul a fost apasat
-      buttonPressStartTime = millis();
+      buttonPressStartTime = currentMillis;
     }
-    if (millis() - buttonPressStartTime >= BTNTIME){
-        //delay pentru debouncing
-        delay(20);
-        charging = 0;  //se opreste incarcarea
-      }
+    else
+      if (currentMillis - buttonPressStartTime >= BTNTIME) {
+          //delay pentru debouncing
+          delay(20);
+          charging = 0;  //se opreste incarcarea
+          buttonPressStartTime = 0; //se reseteaza timpul de apasare
+        }
   } 
-  else{
+  else if(buttonPressStartTime > 0){
     //daca butonul a fost apasat pentru mai putin 1.5s, se reseteaza timpul de apasare
     buttonPressStartTime = 0;
   }
@@ -60,7 +64,7 @@ void loop(){
     digitalWrite(RED_LED, HIGH);
     digitalWrite(GREEN_LED, LOW);
     digitalWrite(BLUE_LED, LOW);
-    int currentMillis = millis();
+    
     //battery = 0 -> bateria este < 25%,  battery = 1 -> bateria este < 50%,  battery = 2 -> bateria este < 75%
     // battery = 3 -> bateria este < 100%, battery = 4 -> bateria este 100%
     switch (battery){
@@ -108,9 +112,8 @@ void loop(){
       default:
         break;
     }
-   
     //daca au trecut 3 secunde de la inceputul intervalului de incarcare, nivelul bateriei creste cu 1
-    if(currentMillis - previousMillis >= INTERVAL){
+    if(currentMillis - previousMillis >= INTERVAL) {
       previousMillis = currentMillis;
       battery++;
       if(battery>4){
@@ -134,5 +137,7 @@ void loop(){
   
   
 }
+
+
 
 
