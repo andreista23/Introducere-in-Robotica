@@ -126,3 +126,26 @@ https://www.tinkercad.com/things/3c0BLhKdvTG-robotica-tema-1
 
 ## Video cu functionalitatea montajului
 https://youtube.com/watch/Jnpg4jyJvUQ?feature=share
+
+#  Tema de casă 2 - ⁠TypeRacer Game
+
+
+## Descrierea cerintelor
+## Componentele utilizate
+- placa Arduino Uno R3, cu microcontroller ATmega328P
+- 1x LED RGB (pentru starea de liber sau ocupat)
+- 2x Butoane (pentru start încărcare și stop încărcare)
+- 5x Rezistoare (3x 330ohm, 2x 1K)
+- Breadboard
+- Linii de legătură
+
+## Setup fizic
+![20241104_230922](https://github.com/user-attachments/assets/b7cac9bb-da1a-40b9-8218-e8118e3a1510)
+![20241104_230908](https://github.com/user-attachments/assets/87f657e1-059a-4c44-8837-a858c333c73b)
+
+## Descrierea codului
+
+## Schema electrica
+
+## Video cu functionalitatea montajului
+https://www.youtube.com/watch/1ye6pVLRoCs
