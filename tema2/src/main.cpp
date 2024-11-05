@@ -56,10 +56,12 @@ void setup() {
 void loop() {
   currentMillis = millis();
   if(gameStarted){
+    //daca butonul de start este apasat cand jocul este pornit, jocul se opreste
     if(btnStart == LOW){
       Serial.println("Stop button pressed");
       btnStart = 1;
       gameStarted = false;
+      roundStarted = false;
       digitalWrite(RED_LED, HIGH);
       digitalWrite(GREEN_LED, HIGH);
       digitalWrite(BLUE_LED, HIGH);
@@ -106,12 +108,11 @@ void loop() {
           break;
       }
     }
+    //daca butonul de start este apasat cand jocul nu este pornit, jocul incepe
     if(btnStart == LOW && !gameStarted) {
       Serial.println("Start button pressed");
       btnStart = 1;
-      previousMillis = currentMillis;
-      previousWordMillis = currentMillis;
-      roundStarted = true;
+      
       startGame();
       delay(500);
     }
@@ -126,10 +127,12 @@ void changeStartButton() {
   btnStart = !btnStart;
 }
 void changeDifficulty(){
+  if(!diffChanged && !gameStarted){
   diffChanged = true;
   difficulty++;
   if(difficulty>3)
     difficulty = 1;
+    }
 }
 void startGame(){
   if(!gameStarted){
@@ -172,10 +175,13 @@ void startGame(){
         dictionar[i] = dictionar[j];
         dictionar[j] = temp;
     }
-
+    // Setăm variabilele pentru începerea jocului
     currentWord = 0;
     score=0;
     mistake = false;
+    previousMillis = currentMillis;
+    previousWordMillis = currentMillis;
+    roundStarted = true;
   }
 }
 void round(){
@@ -203,7 +209,7 @@ void round(){
                           literaCurenta = 0; // Reset letter index
                           currentWord++; // Move to the next word
                           if (currentWord >= DICTIONARY_SIZE) {
-                              currentWord = 0; // Loop back to the first word
+                              currentWord = 1; // Loop back to the first word
                           }
                           // Update previous word millis for the next word
                           previousWordMillis = currentMillis; 
