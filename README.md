@@ -128,6 +128,8 @@ https://www.tinkercad.com/things/3c0BLhKdvTG-robotica-tema-1
 https://youtube.com/watch/Jnpg4jyJvUQ?feature=share
 
 #  Tema de casă 2 - ⁠TypeRacer Game
+
+## Descrierea cerintelor
 Trebuie sa implementam un joc de tip TypeRacer, astfel: cand jocul este in repaus, Jocul este în repaus. LED-ul RGB are culoarea albă.
 
 Se alege dificultatea jocului folosind butonul de dificultate, iar în terminal va apărea “Easy/Medium/Hard mode on!”.
@@ -145,8 +147,6 @@ O greșeală face LED-ul să devină roșu. Pentru a corecta cuvântul, se va fo
 Dupa 30 de secunde, runda se termină, iar în terminal se va afișa scorul: numărul total de cuvinte scrise corect.
 
 Jocul se poate opri oricând cu butonul de start/stop.
-
-## Descrierea cerintelor
 ## Componentele utilizate
 - placa Arduino Uno R3, cu microcontroller ATmega328P
 - 1x LED RGB (pentru starea de liber sau ocupat)
@@ -160,7 +160,20 @@ Jocul se poate opri oricând cu butonul de start/stop.
 ![20241104_230908](https://github.com/user-attachments/assets/87f657e1-059a-4c44-8837-a858c333c73b)
 
 ## Descrierea codului
-
+In functia setup(), am setat modul pinilor (output pentru LED, input pentru butoane), am setat baud-rate-ul pentru serial, si am initializat intreruperile de tip Hardware pentru pinii 2 si 3.
+```
+void setup() {
+  // seteaza pinii
+  pinMode(RED_LED, OUTPUT);
+  pinMode(GREEN_LED, OUTPUT);
+  pinMode(BLUE_LED, OUTPUT);
+  pinMode(START_BUTTON, INPUT_PULLUP);
+  pinMode(DIFF_BUTTON, INPUT_PULLUP);
+  // seteaza comunicatia seriala
+  Serial.begin(28800);
+  // seteaza intreruperile
+  attachInterrupt
+```
 ## Schema electrica
 
 ## Video cu functionalitatea montajului
