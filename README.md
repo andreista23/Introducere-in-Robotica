@@ -366,6 +366,10 @@ void loop() {
 }
 ```
 ## Schema electrica
+![image](https://github.com/user-attachments/assets/dbaeaa3b-eb35-46b5-ac28-f1cf2e475103)
+![image](https://github.com/user-attachments/assets/182172a2-6fa4-49c3-9b35-86a0f8c67ed4)
+
+
 
 ## Video cu functionalitatea montajului 
 https://www.youtube.com/watch/1ye6pVLRoCs
