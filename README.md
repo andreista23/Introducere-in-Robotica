@@ -19,8 +19,8 @@ Led-urile simple reprezintă gradul de încărcare al bateriei, pe care îl vom 
 - Linii de legătură
 
 ## Setup fizic
-<img src="https://github.com/user-attachments/assets/c252f743-cfb8-4d06-acf7-92829e6b1d15" alt="Image 1" width="400"/>
-<img src="https://github.com/user-attachments/assets/f6aa9cf6-b6a6-4712-90a1-987756e526d1" alt="Image 2" width="400"/>
+<img src="https://github.com/user-attachments/assets/c252f743-cfb8-4d06-acf7-92829e6b1d15" alt="Image 1" width="500"/>
+<img src="https://github.com/user-attachments/assets/f6aa9cf6-b6a6-4712-90a1-987756e526d1" alt="Image 2" width="500"/>
 
 ## Descrierea codului
   Programul are 2 ramuri principale, pentru cazul in care bateria se incarca, si pentru cazul in care bateria nu se incarca.
@@ -156,8 +156,9 @@ Jocul se poate opri oricând cu butonul de start/stop.
 - Linii de legătură
 
 ## Setup fizic
-![20241104_230922](https://github.com/user-attachments/assets/b7cac9bb-da1a-40b9-8218-e8118e3a1510)
-![20241104_230908](https://github.com/user-attachments/assets/87f657e1-059a-4c44-8837-a858c333c73b)
+
+<img src="https://github.com/user-attachments/assets/b7cac9bb-da1a-40b9-8218-e8118e3a1510" alt="Image 3" width="500"/>
+<img src="https://github.com/user-attachments/assets/87f657e1-059a-4c44-8837-a858c333c73b" alt="Image 4" width="500"/>
 
 ## Descrierea codului
 In functia setup(), am setat modul pinilor (output pentru LED, input pentru butoane), am setat baud-rate-ul pentru serial, si am initializat intreruperile de tip Hardware pentru pinii 2 si 3.
