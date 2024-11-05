@@ -10,18 +10,18 @@
 
 //variabile globale
 bool gameStarted = false;
-bool btnStart=1;
-bool btnStop=1;
-int wordInterval=10000; //intervalul de timp in care trebuie ghicit cuvantul
+bool btnStart = 1;
+bool btnStop = 1;
+int wordInterval = 10000; //intervalul de timp in care trebuie ghicit cuvantul
 bool roundStarted = false;
 int currentMillis = millis();
-int currentWord=0; //indexul cuvantului curent
+int currentWord = 0; //indexul cuvantului curent
 int previousMillis = currentMillis; 
 int previousWordMillis = currentMillis; //timpul la care a fost afisat ultimul cuvant
 bool mistake; 
 int difficulty = 1; //1-easy, 2-medium, 3-hard
 bool diffChanged = false; //daca s-a schimbat dificultatea
-unsigned int literaCurenta=0;
+unsigned int literaCurenta = 0;
 int score = 0;
 bool selectDifficulty = false; //daca s-a selectat dificultatea
 const char* dictionar[DICTIONARY_SIZE] = {
@@ -60,6 +60,7 @@ void loop() {
     if(btnStart == LOW){
       Serial.println("Stop button pressed");
       btnStart = 1;
+      delay(50);
       gameStarted = false;
       roundStarted = false;
       digitalWrite(RED_LED, HIGH);
@@ -112,7 +113,7 @@ void loop() {
     if(btnStart == LOW && !gameStarted) {
       Serial.println("Start button pressed");
       btnStart = 1;
-      
+      delay(50);
       startGame();
       delay(500);
     }
@@ -134,6 +135,7 @@ void changeDifficulty(){
     difficulty = 1;
     }
 }
+
 void startGame(){
   if(!gameStarted){
     gameStarted = true;
@@ -143,11 +145,12 @@ void startGame(){
     digitalWrite(RED_LED, HIGH);
     digitalWrite(GREEN_LED, HIGH);
     digitalWrite(BLUE_LED, HIGH);
-    char nr='2';
+    char nr = '2';
     Serial.println("3\n");
+    //animatia de la inceput
     while(currentMillis-previousMillis < 3000){
       currentMillis = millis();
-      if(currentMillis - previousMillis2 >= 1000 && nr!='0'){
+      if(currentMillis - previousMillis2 >= 1000 && nr != '0'){
         Serial.print(nr);
         Serial.println("\n");
         nr--;
@@ -190,28 +193,28 @@ void round(){
       currentMillis = millis();
       bool skipWord = false;
        if (Serial.available() > 0) {
-                char litera = Serial.read(); // Read the next character from serial
-                // Compare the letter with the current word
+                char litera = Serial.read(); // Citim caracterul din serial
+                // Verificăm dacă caracterul este o literă sau backspace
                 if (litera == 8) { // ASCII code for backspace
                     mistake = false;
                     Serial.println("Backspace pressed");
                 }
                 else
+                  // Verificăm dacă litera introdusă este corectă
                   if (litera == dictionar[currentWord-1][literaCurenta] && !mistake) {
                       Serial.println("Correct letter: " + String(litera));
                       literaCurenta++; // Move to the next letter
 
-                      // Check if the entire word has been guessed
+                      // Verificăm dacă cuvântul a fost completat
                       if (literaCurenta == strlen(dictionar[currentWord-1])) {
                           Serial.println("Word complete: " + String(dictionar[currentWord-1]));
                           score++;
                           skipWord = true;
-                          literaCurenta = 0; // Reset letter index
-                          currentWord++; // Move to the next word
+                          literaCurenta = 0;
+                          currentWord++; 
                           if (currentWord >= DICTIONARY_SIZE) {
-                              currentWord = 1; // Loop back to the first word
+                              currentWord = 1; // Daca am ajuns la sfarsitul dictionarului, mergem inapoi la primul cuvant
                           }
-                          // Update previous word millis for the next word
                           previousWordMillis = currentMillis; 
                       }
                   } 
