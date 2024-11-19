@@ -404,3 +404,85 @@ Fiecare jucător va avea butoane și LED-uri proprii, iar jocul se va desfășur
 ![image](https://github.com/user-attachments/assets/1ca905ea-d34b-4953-80f6-dcb121d4e1b6)
 ![image](https://github.com/user-attachments/assets/ad0adbd0-1c18-4985-a516-f9e782e55db9)
 ![image](https://github.com/user-attachments/assets/d5a5618c-ff61-4c73-b2f1-e2b07c65f78b)
+
+## Descrierea codului
+
+###Placa Master
+Aceasta placa controleaza LCD-ul, servomotorul si comunicatia cu placuta slave.
+
+Setup LCD:
+```
+const int rs = 7, en = 6, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+```
+
+Control LCD:
+```
+if(changeLCD && roundStart) {
+    lcd.clear();
+    lcd.print("Player1: ");
+    lcd.print((int)player1Score);
+    lcd.setCursor(0,1);
+    lcd.print("Player2: ");
+    lcd.print((int)player2Score);
+    changeLCD=false;
+    }
+  else if(!roundStart && showStart){
+    lcd.clear();
+    lcd.print("Start round ?");
+  }
+```
+Servomotorul trece prin o rotatie completa la fiecare runda a fiecarui jucator, trecand prin cele 180 de pozitie. Isi schimba pozitia la un interval de timp egal cu ROUND_TIME / (2 * 180)
+```
+if (currentMillis - lastMove >= stepDelay) {
+    if (forward) {
+      pos += stepSize;  // Crește poziția
+      if (pos >= 180) {
+        forward = false;  // Inversare direcție
+      }
+    } else {
+      pos -= stepSize;  // Scade poziția
+      if (pos <= 0) {
+        forward = true;  // Inversare direcție
+      }
+    }
+    myservo.write(pos);      // Setează poziția servo
+    lastMove = currentMillis;  // Actualizează timpul ultimei mișcări
+  }
+```
+Placa master trimite prin SPI catre slave caracterul 'A', atunci cand runda a inceput si asteapta scorul primului jucator, si caracterul 'B', cand asteapta scorul celui de-al doilea jucator.
+```
+if (player == 1) {
+      received = SPI.transfer('A');
+      if (received != 'A' && received != 'B') {
+        if (received != player1Score) {
+          player1Score = received;  // Actualizează scorul
+          changeLCD = true;         // Semnalează actualizare LCD
+        }
+        player =2;  // Schimbă la playerul 2
+      }
+      
+      // Trimite comanda pentru playerul 1
+    } else {
+      received = SPI.transfer('B');  // Trimite comanda pentru playerul 2
+       if (received != 'A' && received != 'B') {
+        if (received != player2Score) {
+          player2Score = received;  // Actualizează scorul
+          changeLCD = true;         // Semnalează actualizare LCD
+        }
+        player =1;  // Schimbă la playerul 1
+    }
+    }
+```
+Primeste de la placuta slave caracterul 'N' atunci cand runda s-a sfarsit.
+```
+if (received == 'N') {
+      roundStart = false;
+      roundStartTime = 0;
+      player1Score = 0;
+      player2Score = 0;
+      pos = 0;
+      myservo.write(pos);
+      roundEndTime = millis();
+    } 
+```
