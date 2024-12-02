@@ -667,3 +667,11 @@ ISR(SPI_STC_vect) {
   }
 }
 ```
+
+# Proiect - joc Tetris pe matrici de LED-uri
+
+## Introducere
+
+Proiectul este un joc asemanator Tetris. Ca display vor fi folosite 2 matrici de LED-uri 8x8, asezate una lipita de cealalta pe verticala. Din partea de sus a 'ecranului' va aparea cate o piesa, care va cobora treptat in jos. Jucatorul poate folosi un controller pentru a misca piesa de la stanga la dreapta si poate a apasa un buton pentru a roti piesa. Piesa care apare de sus va fi aleasa in mod random dintr-o lista de piese posibile. Scopul jocului este de a asesa piesele astfel incat sa se completeze linii. La fiecare linie completata, scorul va creste, iar linia respectiva va disparea, iar liniile de deasupra ei vor fi mutate cu o pozitie mai jos.
+
+Scopul proiectului este de divertisment. Tetris este cel mai de succes joc lansat vreodata, avand peste 500 de milioane de copii vandute. Este un joc simplu, dar distractiv, care este foarte usor de invatat si poate fi abordat de orice persoana, indiferent de varsta.
