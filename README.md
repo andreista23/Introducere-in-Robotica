@@ -670,8 +670,16 @@ ISR(SPI_STC_vect) {
 
 # Proiect - joc Tetris pe matrici de LED-uri
 
-## Introducere
+## Introduction
 
-Proiectul este un joc asemanator Tetris. Ca display vor fi folosite 2 matrici de LED-uri 8x8, asezate una lipita de cealalta pe verticala. Din partea de sus a 'ecranului' va aparea cate o piesa, care va cobora treptat in jos. Jucatorul poate folosi un controller pentru a misca piesa de la stanga la dreapta si poate a apasa un buton pentru a roti piesa. Piesa care apare de sus va fi aleasa in mod random dintr-o lista de piese posibile. Scopul jocului este de a asesa piesele astfel incat sa se completeze linii. La fiecare linie completata, scorul va creste, iar linia respectiva va disparea, iar liniile de deasupra ei vor fi mutate cu o pozitie mai jos.
+The project is a game similar to Tetris. For the display, two 8x8 LED matrices will be used, positioned vertically adjacent to each other. A piece will appear from the top of the "screen" and gradually descend. The player can use a controller to move the piece left or right and press a button to rotate the piece. The piece that appears at the top will be randomly selected from a list of possible pieces. The objective of the game is to arrange the pieces to complete lines. For each completed line, the score will increase, the respective line will disappear, and the lines above it will shift down by one position.
 
-Scopul proiectului este de divertisment. Tetris este cel mai de succes joc lansat vreodata, avand peste 500 de milioane de copii vandute. Este un joc simplu, dar distractiv, care este foarte usor de invatat si poate fi abordat de orice persoana, indiferent de varsta.
+The purpose of the project is entertainment. Tetris is the most successful game ever released, with over 500 million copies sold. It is a simple yet engaging game that is very easy to learn and can be enjoyed by anyone, regardless of age.
+
+## General description
+
+## Hardware Design
+
+## Software Design
+
+## Final results
